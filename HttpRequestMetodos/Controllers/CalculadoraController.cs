@@ -16,12 +16,29 @@ namespace HttpRequestMetodos.Controllers
             return View();
         }
 
+        [HttpGet]
         public JsonResult RaizQuadrada64()
         {
 
             var raizQuadrada = Math.Sqrt(64);
 
             return Json(raizQuadrada);
+        }
+        [HttpGet]
+        public JsonResult Acrescentar(int valor)
+        {
+
+            var retorno = 100 + valor;
+
+            return Json(retorno);
+        }
+        [HttpGet]
+        public JsonResult Somar(int valor1, int valor2)
+        {
+
+            var retorno = valor1 + valor2;
+
+            return Json(retorno);
         }
     }
 }

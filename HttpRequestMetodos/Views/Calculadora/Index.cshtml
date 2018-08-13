@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "Calculadora";
+}
+
+
+<div class="form-horizontal">
+    <p></p>
+    <label>MVC CORE 2 </label>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="button" id="btnRaizQuadrada" value="Raiz Quadrada de 64" />
+        </div>
+
+        <div class="col-md-6">
+            <input type="text" id="resultadoRaizQuadrada64" />
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="button" id="btnAcrescentar" value="Acrescentar" />
+        </div>
+
+        <div class="col-md-6">
+            <label id="resultadoAcrescentar" class="control-label"></label>
+            <input type="text" id="Valor" />
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="button" id="btnSomar" value="Somar" />
+        </div>
+
+        <div class="col-md-8">
+            <label id="resultadoSomar" class="control-label"></label>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Valor 1</label> <input type="text" id="Valor1" />
+                </div>
+                <div class="col-md-4">
+                    <label>Valor 2</label> <input type="text" id="Valor2" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <p></p>
+    <label>Web API 2</label>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="button" id="btnSubtrair" value="Subtrair" />
+        </div>
+
+        <div class="col-md-8">
+            <label id="resultadoSubtrair" class="control-label"></label>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Valor 1</label> <input type="text" id="SubValor1" />
+                </div>
+                <div class="col-md-4">
+                    <label>Valor 2</label> <input type="text" id="SubValor2" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="button" id="btnMultiplicar" value="Multiplicar" />
+        </div>
+
+        <div class="col-md-8">
+            <label id="resultadoMultiplicar" class="control-label"></label>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Valor 1</label> <input type="text" id="MulValor1" />
+                </div>
+                <div class="col-md-4">
+                    <label>Valor 2</label> <input type="text" id="MulValor2" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <div class="col-md-2">
+                <input type="button" id="btnCalcular" value="Calcular" />
+            </div>
+        </div>
+        <div class="col-md-8">
+            <label id="resultadoCalcularSubtrair" class="control-label"></label>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Valor 1</label> <input type="text" id="SubCalcularValor1" />
+                </div>
+                <div class="col-md-4">
+                    <label>Valor 2</label> <input type="text" id="SubCalcularValor2" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <label id="resultadoCalcularSomar" class="control-label"></label>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label>Valor 1</label> <input type="text" id="SomCalcularValor1" />
+                </div>
+                <div class="col-md-4">
+                    <label>Valor 2</label> <input type="text" id="SomCalcularValor2" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#btnRaizQuadrada').click(function () {
+                $.get('Calculadora/RaizQuadrada64', function (data) {
+                    $('#resultadoRaizQuadrada64').val(data);
+                });
+            });
+
+            $('#btnAcrescentar').click(function () {
+                $.get('Calculadora/Acrescentar', { valor:$('#Valor').val() }, function (data) {
+                    $('#resultadoAcrescentar').text(data);
+                });
+            });
+            $('#btnSomar').click(function () {
+                $.get('Calculadora/Somar', { valor1: $('#Valor1').val(), valor2: $('#Valor2').val() }, function (data) {
+                    $('#resultadoSomar').text('Resultado:' + data);
+                });
+            });
+            $('#btnSubtrair').click(function () {
+                $.get('api/Calculadora/Subtrair', { valor1: $('#SubValor1').val(), valor2: $('#SubValor2').val() }, function (data) {
+                    $('#resultadoSubtrair').text('Resultado:' + data);
+                });
+            });
+            $('#btnMultiplicar').click(function () {
+               
+                $.get('api/Calculadora/Multiplicao', { valor1: $('#MulValor1').val(), valor2: $('#MulValor2').val()}, function (data) {
+                    $('#resultadoMultiplicar').text('Resultado:' + data);
+                });
+            });
+        });
+    </script>   
+}
